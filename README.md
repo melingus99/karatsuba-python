@@ -5,6 +5,8 @@ This is a work in progress. I am implementing Karatsuba algorithm in Python.
 **Input**: Two n-digit integers `x`, `y`
 **Output**: The product `x * y`
 
+**8/16/18**: Not computing the right result.
+
 ## Base case:
 
 If `n=1` then compute the product in one step
@@ -139,7 +141,7 @@ From the algorithm using 3 recursive calls:
 
 ## Troubleshooting
 
-**8/16/18**: The code is not complete. I am getting errors on the recursive calls.
+**8/15/18**: The code is not complete. I am getting errors on the recursive calls.
 
     ac = product(a, c)
     [Previous line repeated 989 more times]
@@ -148,4 +150,4 @@ From the algorithm using 3 recursive calls:
     RecursionError: maximum recursion depth
     exceeded while calling a Python object
 
-Pending to resolve
+**8/16/18**: I added logging everywhere. Not exactly sure what I did. But the error doesn't show up on stdout anymore.

@@ -1,0 +1,48 @@
+2018-08-16 11:31:39,237 - __main__ - INFO - Algorithm started with numbers x(37) and y(767)
+2018-08-16 11:31:39,238 - __main__ - INFO - Corrected numbers to same n-length: x(037) and y(767)
+2018-08-16 11:31:39,238 - __main__ - INFO - Divided x(037) into a(0) and b(37)
+2018-08-16 11:31:39,238 - __main__ - INFO - Divided y(767) into c(7) and d(67)
+2018-08-16 11:31:39,239 - __main__ - INFO - Product(a,c): 0, 7 = 0
+2018-08-16 11:31:39,239 - __main__ - INFO - Divided x(37) into a(3) and b(7)
+2018-08-16 11:31:39,239 - __main__ - INFO - Divided y(67) into c(6) and d(7)
+2018-08-16 11:31:39,240 - __main__ - INFO - Product(a,c): 3, 6 = 18
+2018-08-16 11:31:39,240 - __main__ - INFO - Product(b,d): 7, 7 = 49
+2018-08-16 11:31:39,240 - __main__ - INFO - p = a + b = 3 + 7 = 10
+2018-08-16 11:31:39,240 - __main__ - INFO - q = c + d = 6 + 7 = 13
+2018-08-16 11:31:39,241 - __main__ - INFO - Divided x(10) into a(1) and b(0)
+2018-08-16 11:31:39,241 - __main__ - INFO - Divided y(13) into c(1) and d(3)
+2018-08-16 11:31:39,241 - __main__ - INFO - Product(a,c): 1, 1 = 1
+2018-08-16 11:31:39,241 - __main__ - INFO - Product(b,d): 0, 3 = 0
+2018-08-16 11:31:39,242 - __main__ - INFO - p = a + b = 1 + 0 = 1
+2018-08-16 11:31:39,242 - __main__ - INFO - q = c + d = 1 + 3 = 4
+2018-08-16 11:31:39,242 - __main__ - INFO - pq = product(p, q) = 1, 4 = 4
+2018-08-16 11:31:39,242 - __main__ - INFO - adbc = pq-ac-bd = 4-1-0 = 3
+2018-08-16 11:31:39,243 - __main__ - INFO - Result: 130
+2018-08-16 11:31:39,244 - __main__ - INFO - pq = product(p, q) = 10, 13 = 130
+2018-08-16 11:31:39,244 - __main__ - INFO - adbc = pq-ac-bd = 130-18-49 = 63
+2018-08-16 11:31:39,244 - __main__ - INFO - Result: 2479
+2018-08-16 11:31:39,244 - __main__ - INFO - Product(b,d): 37, 67 = 2479
+2018-08-16 11:31:39,245 - __main__ - INFO - p = a + b = 0 + 37 = 37
+2018-08-16 11:31:39,245 - __main__ - INFO - q = c + d = 7 + 67 = 74
+2018-08-16 11:31:39,245 - __main__ - INFO - Divided x(37) into a(3) and b(7)
+2018-08-16 11:31:39,245 - __main__ - INFO - Divided y(74) into c(7) and d(4)
+2018-08-16 11:31:39,246 - __main__ - INFO - Product(a,c): 3, 7 = 21
+2018-08-16 11:31:39,246 - __main__ - INFO - Product(b,d): 7, 4 = 28
+2018-08-16 11:31:39,246 - __main__ - INFO - p = a + b = 3 + 7 = 10
+2018-08-16 11:31:39,247 - __main__ - INFO - q = c + d = 7 + 4 = 11
+2018-08-16 11:31:39,247 - __main__ - INFO - Divided x(10) into a(1) and b(0)
+2018-08-16 11:31:39,247 - __main__ - INFO - Divided y(11) into c(1) and d(1)
+2018-08-16 11:31:39,247 - __main__ - INFO - Product(a,c): 1, 1 = 1
+2018-08-16 11:31:39,248 - __main__ - INFO - Product(b,d): 0, 1 = 0
+2018-08-16 11:31:39,248 - __main__ - INFO - p = a + b = 1 + 0 = 1
+2018-08-16 11:31:39,248 - __main__ - INFO - q = c + d = 1 + 1 = 2
+2018-08-16 11:31:39,248 - __main__ - INFO - pq = product(p, q) = 1, 2 = 2
+2018-08-16 11:31:39,248 - __main__ - INFO - adbc = pq-ac-bd = 2-1-0 = 1
+2018-08-16 11:31:39,248 - __main__ - INFO - Result: 110
+2018-08-16 11:31:39,248 - __main__ - INFO - pq = product(p, q) = 10, 11 = 110
+2018-08-16 11:31:39,248 - __main__ - INFO - adbc = pq-ac-bd = 110-21-28 = 61
+2018-08-16 11:31:39,248 - __main__ - INFO - Result: 2738
+2018-08-16 11:31:39,248 - __main__ - INFO - pq = product(p, q) = 37, 74 = 2738
+2018-08-16 11:31:39,248 - __main__ - INFO - adbc = pq-ac-bd = 2738-0-2479 = 259
+2018-08-16 11:31:39,248 - __main__ - INFO - Result: 5069
+2018-08-16 11:31:39,248 - __main__ - INFO - Algorithm end time

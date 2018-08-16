@@ -33,7 +33,16 @@
 # - Compute 10^n ac + 10^n/2 adbc + bd
 
 from datetime import datetime
-import sys
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler('output.log')
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
 
 def zero_pad(x, y):
     # Numbers have to be of same length n
@@ -53,51 +62,68 @@ def product(x, y):
         zero_pad(x,y)
 
     a = x[:len(x)//2]
-    print(a)
     b = x[len(x)//2:]
-    print(b)
     c = y[:len(y)//2]
-    print(c)
     d = y[len(y)//2:]
-    print(d)
+    
+    logger.info('Divided x(%s) into a(%s) and b(%s)',x,a,b)
+    logger.info('Divided y(%s) into c(%s) and d(%s)',y,c,d)
 
     n = len(x)
-    print(n)
 
-    ac = product(a, c)
-    print(ac)
+    try:
+        ac = product(a, c)
+        logger.info('Product(a,c): %s, %s = %s',a,c,ac)
+    except(SystemExit, KeyboardInterrupt):
+        raise
+    except Exception:
+        logger.error('Cannot compute ac', exc_info=True)
 
-    bd = product(b, d)
-    print(bd)
+    try:
+        bd = product(b, d)
+        logger.info('Product(b,d): %s, %s = %s',b,d,bd)
+    except(SystemExit, KeyboardInterrupt):
+        raise
+    except Exception:
+        logger.error('Cannot compute bd', exc_info=True)
 
     p = int(a) + int(b)
-    print(p)
-    q = int(c) + int(d)
-    print(q)
+    logger.info('p = a + b = %s + %s = %s',a,b,p)
 
-    pq = product(str(p), str(q))
-    print(pq)
+    q = int(c) + int(d)
+    logger.info('q = c + d = %s + %s = %s',c,d,q)
+
+    try:
+        pq = product(str(p), str(q))
+        logger.info('pq = product(p, q) = %s, %s = %s',p,q,pq)
+    except(SystemExit, KeyboardInterrupt):
+        raise
+    except Exception:
+        logger.error('Cannot compute pq', exc_info=True)
 
     adbc = pq - ac - bd
-    print(adbc)
+    logger.info('adbc = pq-ac-bd = %s-%s-%s = %s',pq,ac,bd,adbc)
 
     result = (10**n * ac) + (10**(n//2) * adbc) + bd
-    print(result)
+    logger.info('Result: %s',result)
     return result
 
 def main():
     x = input('Enter the 1st number: ')
     y = input('Enter the 2nd number: ')
+    logger.info('Algorithm started with numbers x(%s) and y(%s)',x,y)
+
     start_time = datetime.now()
 
     x,y = zero_pad(x, y)
-    print('Fixed numbers length: {}, {}'.format(x,y))
+    logger.info('Corrected numbers to same n-length: x(%s) and y(%s)',x,y)
 
     result = product(x, y)
     print('Result: {}'.format(result))
 
+    logger.info('Algorithm end time')
     end_time = (datetime.now() - start_time).total_seconds()
-    print('Running time: {}s'.format(end_time))
+    print('Running time: {}'.format(end_time))
 
 if __name__ == '__main__':
     main()
