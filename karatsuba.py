@@ -49,63 +49,80 @@ def zero_pad(x, y):
     # Otherwise add trailing zeroes
 
     if len(x) < len(y):
+        logger.info('%s < %s. Correcting length of %s',x,y,x)
         x = (len(y) - len(x)) * '0' + x
+
     elif len(y) < len(x):
+        logger.info('%s < %s. Correcting length of %s',y,x,y)
         y = (len(x) - len(y)) * '0' + y
 
     return x,y
 
 def product(x, y):
     if len(x) == 1 and len(y) == 1:
+        logger.info('%s and %s are same length. Return %s * %s',x,y,x,y)
         return int(x) * int(y)
+
     elif len(x) != len(y):
-        zero_pad(x,y)
+        logger.info('%s and %s not same length. zero_pad(%s,%s)',x,y,x,y)
+        x,y = zero_pad(x,y)
+        logger.info('%s and %s corrected to same length',x,y)
 
     a = x[:len(x)//2]
     b = x[len(x)//2:]
     c = y[:len(y)//2]
     d = y[len(y)//2:]
     
-    logger.info('Divided x(%s) into a(%s) and b(%s)',x,a,b)
-    logger.info('Divided y(%s) into c(%s) and d(%s)',y,c,d)
+    logger.info('Divided (%s) into a(%s) and b(%s)',x,a,b)
+    logger.info('Divided (%s) into c(%s) and d(%s)',y,c,d)
 
     n = len(x)
 
     try:
+        logger.info('Compute ac = product(%s, %s)',a,c)
         ac = product(a, c)
         logger.info('Product(a,c): %s, %s = %s',a,c,ac)
+
     except(SystemExit, KeyboardInterrupt):
         raise
     except Exception:
         logger.error('Cannot compute ac', exc_info=True)
 
     try:
+        logger.info('Compute bd = product(%s, %s)',b,d)
         bd = product(b, d)
         logger.info('Product(b,d): %s, %s = %s',b,d,bd)
+
     except(SystemExit, KeyboardInterrupt):
         raise
     except Exception:
         logger.error('Cannot compute bd', exc_info=True)
 
+    logger.info('Compute p = %s+%s',a,b)
     p = int(a) + int(b)
     logger.info('p = a + b = %s + %s = %s',a,b,p)
 
+    logger.info('Compute q = %s+%s',c,d)
     q = int(c) + int(d)
     logger.info('q = c + d = %s + %s = %s',c,d,q)
 
     try:
+        logger.info('Compute pq = product(%s, %s)',p,q)
         pq = product(str(p), str(q))
-        logger.info('pq = product(p, q) = %s, %s = %s',p,q,pq)
+        logger.info('pq = product(%s, %s) = %s',p,q,pq)
+
     except(SystemExit, KeyboardInterrupt):
         raise
     except Exception:
         logger.error('Cannot compute pq', exc_info=True)
 
+    logger.info('Compute adbc = %s-%s-%s',pq,ac,bd)
     adbc = pq - ac - bd
     logger.info('adbc = pq-ac-bd = %s-%s-%s = %s',pq,ac,bd,adbc)
 
+    logger.info('Compute Karatsuba')
     result = (10**n * ac) + (10**(n//2) * adbc) + bd
-    logger.info('Result: %s',result)
+    logger.info('Karatsuba product(%s, %s) = %s',x,y,result)
     return result
 
 def main():
@@ -115,15 +132,14 @@ def main():
 
     start_time = datetime.now()
 
-    x,y = zero_pad(x, y)
-    logger.info('Corrected numbers to same n-length: x(%s) and y(%s)',x,y)
-
     result = product(x, y)
     print('Result: {}'.format(result))
 
     logger.info('Algorithm end time')
     end_time = (datetime.now() - start_time).total_seconds()
     print('Running time: {}'.format(end_time))
+
+    assert product(32,767) == 24544, "Incorrect product computation"
 
 if __name__ == '__main__':
     main()
