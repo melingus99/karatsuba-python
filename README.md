@@ -5,7 +5,7 @@ This is a work in progress. I am implementing Karatsuba algorithm in Python.
 **Input**: Two n-digit integers `x`, `y`
 **Output**: The product `x * y`
 
-**8/16/18**: Not computing the right result.
+**8/18/18**: The algorithm works for any n-digit integer. The two integers can be odd or even and be of same length or not.
 
 ## Base case:
 
@@ -151,3 +151,5 @@ From the algorithm using 3 recursive calls:
     exceeded while calling a Python object
 
 **8/16/18**: I added logging everywhere. Not exactly sure what I did. But the error doesn't show up on stdout anymore.
+
+**8/18/18**: I wasn't considering odd numbers of same length. Corrected this.

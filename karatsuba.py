@@ -12,17 +12,6 @@
 # - 10^n ac + 10^n/2 (ad+bc) + bd
 # - a := left side of x, b := right side of x
 # - c := left side of y, d := right side of y
-#       a  b
-#   *   c  d
-#      -----
-#      ad  ab
-# + ac bc
-# -----------
-#  ac  0   0
-# +  ad+bc 0
-# +        ab
-# -----------
-# ac ad+bc ab
 #
 # - Recursive compute ac := a*c
 # - Recursive compute bd := b*d
@@ -46,7 +35,7 @@ logger.addHandler(fh)
 
 def zero_pad(x, y):
     # Numbers have to be of same length n
-    # Otherwise add trailing zeroes
+    # Otherwise add leading zeroes
 
     if len(x) < len(y):
         logger.info('%s < %s. Correcting length of %s',x,y,x)
@@ -56,6 +45,12 @@ def zero_pad(x, y):
         logger.info('%s < %s. Correcting length of %s',y,x,y)
         y = (len(x) - len(y)) * '0' + y
 
+    if len(x) == len(y) and len(x) % 2 == 1:
+        # checks if len(x) and len(y) is odd
+        logger.info('Length of %s and %s is odd. Correcting to even',x,y)
+        x = '0' + x
+        y = '0' + y
+
     return x,y
 
 def product(x, y):
@@ -63,10 +58,7 @@ def product(x, y):
         logger.info('%s and %s are same length. Return %s * %s',x,y,x,y)
         return int(x) * int(y)
 
-    elif len(x) != len(y):
-        logger.info('%s and %s not same length. zero_pad(%s,%s)',x,y,x,y)
-        x,y = zero_pad(x,y)
-        logger.info('%s and %s corrected to same length',x,y)
+    x,y = zero_pad(x,y)
 
     a = x[:len(x)//2]
     b = x[len(x)//2:]
@@ -121,7 +113,9 @@ def product(x, y):
     logger.info('adbc = pq-ac-bd = %s-%s-%s = %s',pq,ac,bd,adbc)
 
     logger.info('Compute Karatsuba')
+    logger.info('(10^%s * %s) + (10^(%s/2) * %s) + %s',n,ac,n,adbc,bd)
     result = (10**n * ac) + (10**(n//2) * adbc) + bd
+
     logger.info('Karatsuba product(%s, %s) = %s',x,y,result)
     return result
 
@@ -139,7 +133,8 @@ def main():
     end_time = (datetime.now() - start_time).total_seconds()
     print('Running time: {}'.format(end_time))
 
-    assert product(32,767) == 24544, "Incorrect product computation"
+    assert product(str(32),str(767)) == 24544, "Incorrect product computation"
+    assert product(str(123456789),str(123456789)) == 15241578750190521, "Incorrect product computation"
 
 if __name__ == '__main__':
     main()
